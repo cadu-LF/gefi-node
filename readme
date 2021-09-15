@@ -1,0 +1,5 @@
+Ida de informações
+Controller(pega a requisição) -> Service(aplica as regras de negício) -> Repository
+
+Volta de informações
+Repository -> Service(aplica as regras de negício) -> Controller(arruma a resposta) -> mostra pro usuário
