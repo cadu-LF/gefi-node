@@ -1,12 +1,36 @@
+import { EntityRepository, Repository } from "typeorm";
+import Usuario from "../Entities/Usuario";
 
-// repository pega do banco
+@EntityRepository(Usuario)
 export default class UsuarioRepository extends Repository<Usuario>{
 
-  public async findByUserName(userName:string): Promise<Usuario | undefined>{
-
+  public async findByName(name: string): Promise<Usuario | undefined> {
+    
     const user = await this.findOne({
       where: { 
-        userName
+        name
+      }
+    });
+
+    return user;
+  }
+
+  public async findByEmail(email: string): Promise<Usuario | undefined> {
+    
+    const user = await this.findOne({
+      where: { 
+        email
+      }
+    });
+
+    return user;
+  }
+
+  public async findById(id: string): Promise<Usuario | undefined> {
+    
+    const user = await this.findOne({
+      where: { 
+        id
       }
     });
 

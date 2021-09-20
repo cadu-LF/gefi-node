@@ -1,14 +1,23 @@
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-// entity pega os campos da tabela e transforma em uma classe
 @Entity('tb_usuarios')
-export default class Usuario{
+export default class Usuario {
 
   @PrimaryGeneratedColumn()
-  idUsario: integer;
+  id: number; 
 
-  @Column
-  userName: string;
+  @Column()
+  name: string;
 
-  @Column
+  @Column()
+  email: string;
+
+  @Column()
   password: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }
