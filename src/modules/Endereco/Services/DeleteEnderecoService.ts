@@ -3,7 +3,7 @@ import AppError from "../../../shared/errors/AppErrors";
 import EnderecoRepository from "../typeorm/Repositories/EnderecoRepository";
 
 interface IRequest {
-  id: number
+  id: string
 }
 
 export default class DeleteProductService {
@@ -12,7 +12,7 @@ export default class DeleteProductService {
 
     let enderecoRepository = getCustomRepository(EnderecoRepository);
 
-    let endereco = await enderecoRepository.findOne(id);
+    let endereco = await enderecoRepository.findOne(Number(id));
 
     if(!endereco) {
       throw new AppError(`Endereço com id: ${id} não existe`);

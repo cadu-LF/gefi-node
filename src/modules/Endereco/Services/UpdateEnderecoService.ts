@@ -4,7 +4,7 @@ import Endereco from "../typeorm/Entities/Endereco";
 import EnderecoRepository from "../typeorm/Repositories/EnderecoRepository";
 
 interface IRequest{
-  id: number,
+  id: string,
   numero: number,
   rua: string,
   bairro: string,
@@ -15,7 +15,7 @@ export default class UpdateEnderecoService{
   public async execute({id, numero, rua, bairro, complemento}: IRequest): Promise<Endereco>{
     let enderecoRepository = getCustomRepository(EnderecoRepository);
 
-    let enderecoExists = await enderecoRepository.findOne(id);
+    let enderecoExists = await enderecoRepository.findOne(Number(id));
 
     if(!enderecoExists){
       throw new AppError('Endereco não existe');

@@ -12,7 +12,7 @@ export default class ShowProductService {
   public async execute({id}: IRequest): Promise<Endereco> {
 
     let enderecoRepository = getCustomRepository(EnderecoRepository);
-    let endereco = await enderecoRepository.findOne(id);
+    let endereco = await enderecoRepository.findOne(Number(id));
 
     if(!endereco) {
       throw new AppError(`Endreco com id: ${id} não existe`);
