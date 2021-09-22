@@ -32,7 +32,9 @@ class SessaoUsuarioService {
       throw new AppError(`Incorrect email/password combination`, 401)
     }
 
-    let token = sign({}, authConfig.jwt.secret, {
+    const jwt = require('jsonwebtoken');
+
+    let token = jwt.sign({}, authConfig.jwt.secret, {
       subject: user.id,
       expiresIn: authConfig.jwt.expiresIn
     })
