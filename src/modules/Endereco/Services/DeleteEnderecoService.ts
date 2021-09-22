@@ -8,7 +8,7 @@ interface IRequest {
 
 export default class DeleteProductService {
 
-  public async execute({id}: IRequest): Promise<void> {
+  public async execute({ id }: IRequest): Promise<void> {
 
     let enderecoRepository = getCustomRepository(EnderecoRepository);
 
