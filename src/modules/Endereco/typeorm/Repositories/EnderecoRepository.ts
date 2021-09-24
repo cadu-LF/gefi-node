@@ -4,7 +4,7 @@ import { EntityRepository, Repository } from "typeorm";
 import Endereco from "../Entities/Endereco";
 
 @EntityRepository(Endereco)
-export default class ProductRepository extends Repository<Endereco>{
+export default class EnderecoRepository extends Repository<Endereco>{
 
   /**
    * Busca Endereco pela rua
