@@ -7,29 +7,29 @@ interface IRequest {
   numero: number,
   rua: string,
   bairro: string,
-  complemento: string,
+  complemento: string
 }
 
-export default class CreateProductService {
+export default class CreateEnderecoService {
 
   public async execute({numero, rua, bairro, complemento}: IRequest): Promise<Endereco> {
-    let enderecoReposiory = getCustomRepository(EnderecoRepository);
+    let enderecoRepository = getCustomRepository(EnderecoRepository);
 
-    let ruaExist = await enderecoReposiory.findByRua(rua)
-    let numeroExist = await enderecoReposiory.findByNumero(numero)
+    let ruaExist = await enderecoRepository.findByRua(rua)
+    let numeroExist = await enderecoRepository.findByNumero(numero)
 
     if(ruaExist && numeroExist) {
       throw new AppErrors('Já temos endereço essa rua e número cadastrado');
     } 
 
-    let newEndereco = enderecoReposiory.create({
+    let newEndereco = enderecoRepository.create({
       numero, 
       rua,
       bairro,
       complemento
     })
 
-    await enderecoReposiory.save(newEndereco);
+    await enderecoRepository.save(newEndereco);
 
     return newEndereco;
 

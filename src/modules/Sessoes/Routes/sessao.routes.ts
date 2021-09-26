@@ -7,9 +7,9 @@ import isAuthenticated from '../../../shared/middleware/isAuthenticated'
 let sessaoRouter = Router()
 let sessaoController = new SessaoController()
 
-sessaoRouter.get('/',isAuthenticated, sessaoController.index) 
+sessaoRouter.get('/', isAuthenticated, sessaoController.index) 
 
-sessaoRouter.get('/:id',
+sessaoRouter.get('/:id', isAuthenticated,
 celebrate({
   [Segments.PARAMS]: {
     id: Joi.number().required()
@@ -17,7 +17,7 @@ celebrate({
 }),
 sessaoController.show)
 
-sessaoRouter.post('/',
+sessaoRouter.post('/', isAuthenticated,
 celebrate({
   [Segments.BODY]: {
     nome: Joi.string().required(),
@@ -26,7 +26,7 @@ celebrate({
 }),
 sessaoController.create)
 
-sessaoRouter.delete('/:id',
+sessaoRouter.delete('/:id', isAuthenticated,
 celebrate({
   [Segments.PARAMS]: {
     id: Joi.number().required(),
@@ -34,7 +34,7 @@ celebrate({
 }),
 sessaoController.delete)
 
-sessaoRouter.put('/:id',
+sessaoRouter.put('/:id', isAuthenticated,
 celebrate({
   [Segments.PARAMS]: {
     id: Joi.number().required(),

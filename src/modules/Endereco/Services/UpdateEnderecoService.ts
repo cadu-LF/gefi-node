@@ -1,5 +1,5 @@
 import { getCustomRepository } from "typeorm";
-import AppError from "../../../shared/errors/AppErrors";
+import AppErrors from "../../../shared/errors/AppErrors";
 import Endereco from "../typeorm/Entities/Endereco";
 import EnderecoRepository from "../typeorm/Repositories/EnderecoRepository";
 
@@ -18,15 +18,14 @@ export default class UpdateEnderecoService{
     let enderecoExists = await enderecoRepository.findOne(Number(id));
 
     if(!enderecoExists){
-      throw new AppError('Endereco não existe');
+      throw new AppErrors(`Endereço com id: ${id} não existe`);
     }
 
     let endrecoMesmaRua = await enderecoRepository.findByRua(rua);
-
     let enderecoMesmoNumero = await enderecoRepository.findByNumero(numero);
 
     if(endrecoMesmaRua && enderecoMesmoNumero){
-      throw new AppError('Endereço já existente');
+      throw new AppErrors('Endereço já existente');
     }
 
     enderecoExists.numero = numero;

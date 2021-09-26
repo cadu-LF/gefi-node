@@ -14,10 +14,4 @@ export default class Usuario {
 
   @Column()
   password: string;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
 }

@@ -35,6 +35,7 @@ export default class SessaoController {
 
   public async show(request: Request, response: Response): Promise<Response> {
     let { id } = request.params
+
     let showSessao = new ShowSessaoService();
     let sessao = await showSessao.execute({ id })
 

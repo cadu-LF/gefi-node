@@ -7,9 +7,9 @@ import isAuthenticated from '../../../shared/middleware/isAuthenticated'
 let enderecoRouter = Router()
 let enderecoController = new EnderecoController()
 
-enderecoRouter.get('/',isAuthenticated, enderecoController.index) 
+enderecoRouter.get('/', enderecoController.index) 
 
-enderecoRouter.get('/:id',
+enderecoRouter.get('/:id', isAuthenticated,
 celebrate({
   [Segments.PARAMS]: {
     id: Joi.number().required()
@@ -17,7 +17,7 @@ celebrate({
 }),
 enderecoController.show)
 
-enderecoRouter.post('/',
+enderecoRouter.post('/', isAuthenticated,
 celebrate({
   [Segments.BODY]: {
     numero: Joi.number().required(),
@@ -28,7 +28,7 @@ celebrate({
 }),
 enderecoController.create)
 
-enderecoRouter.delete('/:id',
+enderecoRouter.delete('/:id', isAuthenticated,
 celebrate({
   [Segments.PARAMS]: {
     id: Joi.number().required(),
@@ -36,7 +36,7 @@ celebrate({
 }),
 enderecoController.delete)
 
-enderecoRouter.put('/:id',
+enderecoRouter.put('/:id', isAuthenticated,
 celebrate({
   [Segments.PARAMS]: {
     id: Joi.number().required(),

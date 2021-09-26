@@ -1,23 +1,24 @@
 import { Request, Response } from "express";
-import CreateEnderecoService from "../Services/CreateEnderecoService";
-import DeleteEnderecoService from "../Services/DeleteEnderecoService";
-import ListEnderecoService from "../Services/ListEnderecoService";
-import ShowEnderecoService from "../Services/ShowEnderecoService";
-import UpdateEnderecoService from "../Services/UpdateEnderecoService";
 
-export default class ProductController {
+import CreateEnderecoService from '../Services/CreateEnderecoService'
+import DeleteEnderecoService from '../Services/DeleteEnderecoService'
+import ListEnderecoService from '../Services/ListEnderecoService'
+import ShowEnderecoService from '../Services/ShowEnderecoService'
+import UpdateEnderecoService from '../Services/UpdateEnderecoService'
+
+export default class EnderecoController {
   public async create(request: Request, response: Response): Promise<Response> {
 
     let {numero, rua, bairro, complemento} = request.body
-    let createProduct = new CreateEnderecoService()
-    let newProduct = await createProduct.execute({
+    let createEndereco = new CreateEnderecoService()
+    let newEndereco = await createEndereco.execute({
       numero, 
       rua, 
       bairro,
       complemento
     })
 
-    return response.json(newProduct);
+    return response.json(newEndereco);
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
@@ -48,8 +49,8 @@ export default class ProductController {
 
     let { numero, rua, bairro, complemento } = request.body
     let updateService = new UpdateEnderecoService();
-    let product = await updateService.execute({id, numero, rua, bairro, complemento})
+    let endereco = await updateService.execute({id, numero, rua, bairro, complemento})
 
-    return response.json(product)
+    return response.json(endereco)
   }
 }

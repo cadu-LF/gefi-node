@@ -1,12 +1,10 @@
-// vamos usar o padrão de projeto decorator
-
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('tb_enderecos')
 export default class Endereco {
 
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
   
   @Column('int')
   numero: number;

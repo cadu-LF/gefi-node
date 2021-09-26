@@ -1,5 +1,3 @@
-// repositório da entidade Product
-
 import { EntityRepository, Repository } from "typeorm";
 import Endereco from "../Entities/Endereco";
 

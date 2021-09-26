@@ -2,7 +2,7 @@ import { getCustomRepository } from "typeorm";
 import Endereco from "../typeorm/Entities/Endereco";
 import EnderecoRepository from "../typeorm/Repositories/EnderecoRepository";
 
-export default class ListProductService {
+export default class ListEnderecoService {
   
   public async execute(): Promise<Endereco[]> {
 

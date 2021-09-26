@@ -1,11 +1,9 @@
-// vamos usar o padrão de projeto decorator
-
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryColumn } from "typeorm";
 
 @Entity('tb_sessoes')
 export default class Sessao {
 
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   id: number;
   
   @Column()
