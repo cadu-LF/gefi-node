@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
 export class CreateProduto1632680973979 implements MigrationInterface {
 
@@ -7,14 +7,15 @@ export class CreateProduto1632680973979 implements MigrationInterface {
             name: 'tb_produtos',
             columns: [
                 {
-                    name: 'cod_produto',
+                    name: 'id_produto',
                     type: 'integer',
                     isPrimary: true,
                     generationStrategy: 'increment'
                 },
                 {
-                    name: 'categoria',
-                    type: 'varchar'
+                    name: 'id_tipo_produto',
+                    type: 'integer',
+                    isUnique: true
                 },
                 {
                     name: 'desc_produto',
@@ -26,7 +27,16 @@ export class CreateProduto1632680973979 implements MigrationInterface {
                     scale: 2
                 }
             ]
+
         }))
+        
+        const foreignKey = new TableForeignKey({
+            columnNames: ["id_tipo_produto"],
+            referencedColumnNames: ["id_tipo_produto"],
+            referencedTableName: "tb_tipo_produto",
+            onDelete: "CASCADE"
+        });
+        await queryRunner.createForeignKey("tb_tipos_produtos", foreignKey);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

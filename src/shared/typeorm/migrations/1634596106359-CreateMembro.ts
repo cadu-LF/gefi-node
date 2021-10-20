@@ -1,26 +1,27 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateNroRegistro1632680808711 implements MigrationInterface {
+export class CreateMembro1634596106359 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'tb_nro_registro',
+            name: 'tb_tipos_produtos',
             columns: [
                 {
-                    name: 'nro_registro',
+                    name: 'id_tipo_produto',
                     type: 'integer',
                     isPrimary: true,
+                    generationStrategy: 'increment'
                 },
                 {
-                    name: 'data_vencimento',
-                    type: 'date'
+                    name: 'ds_tipo_produto',
+                    type: 'varchar'
                 }
             ]
         }))
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('tb_nro_registro');
+        await queryRunner.dropTable('tb_tipos_produtos')
     }
 
 }
