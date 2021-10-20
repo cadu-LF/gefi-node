@@ -7,9 +7,14 @@ export class CreatePessoa1634340580725 implements MigrationInterface {
             name: 'tb_pessoas',
             columns: [
                 {
+                    name: 'id_pessoa',
+                    type: 'integer',
+                    isPrimary: true,
+                    generationStrategy: 'increment'
+                },
+                {
                     name: 'cpf',
                     type: 'varchar',
-                    isPrimary: true
                 },
                 {
                     name: 'nome',

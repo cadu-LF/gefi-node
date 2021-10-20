@@ -4,6 +4,7 @@ import Pessoa from "../typeorm/Entities/Pessoa";
 import PessoaRepository from "../typeorm/Repositories/PessoaRepository";
 
 interface IRequest{
+  id: string;
   cpf: string;
   nome: string;
   idade: number;
@@ -12,13 +13,13 @@ interface IRequest{
 }
 
 export default class UpdatePessoaService{
-  public async execute({cpf, nome, idade, sexo, email}: IRequest): Promise<Pessoa>{
+  public async execute({id, cpf, nome, idade, sexo, email}: IRequest): Promise<Pessoa>{
     let pessoaRepository = getCustomRepository(PessoaRepository);
 
-    let pessoaExists = await pessoaRepository.findOne(cpf);
+    let pessoaExists = await pessoaRepository.findOne(id);
 
     if(!pessoaExists){
-      throw new AppErrors(`Pessoa com cpf: ${cpf} não existe`);
+      throw new AppErrors(`Pessoa com id: ${id} não existe`);
     }
 
     let pessoaMesmoEmail = await pessoaRepository.findByEmail(email);
@@ -27,6 +28,13 @@ export default class UpdatePessoaService{
       throw new AppErrors('Pessoa com esse email já foi cadastrada');
     }
 
+    let pessoaMesmoCpf = await pessoaRepository.findByCpf(cpf);
+
+    if(pessoaMesmoCpf){
+      throw new AppErrors('Pessoa com esse cpf já foi cadastrada');
+    }
+
+    pessoaExists.cpf = cpf;
     pessoaExists.nome = nome;
     pessoaExists.idade = idade;
     pessoaExists.sexo = sexo;

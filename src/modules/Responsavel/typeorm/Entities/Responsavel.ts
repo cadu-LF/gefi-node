@@ -8,5 +8,4 @@ export default class Responsavel extends Pessoa {
 
   @Column("boolean")
   voluntario: boolean;
-
 }

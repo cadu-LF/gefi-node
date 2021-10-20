@@ -4,6 +4,9 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export default class Pessoa {
 
   @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
   cpf: string;
   
   @Column()

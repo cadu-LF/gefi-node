@@ -7,7 +7,7 @@ export class CreateResponsavel1634340898996 implements MigrationInterface {
             name: 'tb_responsaveis',
             columns: [
                 {
-                    name: 'cpf_responsavel',
+                    name: 'id_responsavel',
                     type: 'varchar',
                     isUnique: true,
                 },
@@ -21,8 +21,8 @@ export class CreateResponsavel1634340898996 implements MigrationInterface {
         queryRunner.clearSqlMemory();
 
         const foreignKey = new TableForeignKey({
-            columnNames: ["cpf_responsavel"],
-            referencedColumnNames: ["cpf"],
+            columnNames: ["id_responsavel"],
+            referencedColumnNames: ["id_pessoa"],
             referencedTableName: "tb_pessoas",
             onDelete: "CASCADE"
         });

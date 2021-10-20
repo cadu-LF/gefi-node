@@ -23,9 +23,9 @@ export default class PessoaController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    let { cpf } = request.params;
+    let { id } = request.params;
     let deletePessoa = new DeletePessoaService();
-    await deletePessoa.execute({ cpf })
+    await deletePessoa.execute({ id })
 
     return response.json([])
   }
@@ -38,9 +38,9 @@ export default class PessoaController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    let { cpf } = request.params
+    let { id } = request.params
     let showPessoa = new ShowPessoaService();
-    let pessoa = await showPessoa.execute({ cpf })
+    let pessoa = await showPessoa.execute({ id })
 
     return response.json(pessoa)
   }
@@ -48,9 +48,9 @@ export default class PessoaController {
   public async update(request: Request, response: Response): Promise<Response> {
     let { id } = request.params
 
-    let { cpf, nome, idade, sexo, bairro } = request.body
+    let { cpf, nome, idade, sexo, email } = request.body
     let updateService = new UpdatePessoaService();
-    let endereco = await updateService.execute({id, numero, rua, bairro, complemento})
+    let endereco = await updateService.execute({id, cpf, nome, idade, sexo, email})
 
     return response.json(endereco)
   }
