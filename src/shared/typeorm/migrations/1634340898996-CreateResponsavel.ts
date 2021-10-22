@@ -8,7 +8,7 @@ export class CreateResponsavel1634340898996 implements MigrationInterface {
             columns: [
                 {
                     name: 'id_responsavel',
-                    type: 'varchar',
+                    type: 'integer',
                     isUnique: true,
                 },
                 {
