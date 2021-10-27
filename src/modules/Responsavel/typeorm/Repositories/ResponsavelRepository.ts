@@ -6,7 +6,7 @@ import Responsavel from "../Entities/Responsavel";
 @EntityRepository(Responsavel)
 export default class ResponsavelRepository extends Repository<Responsavel>{
     /**
-   * Busca Pessoa pelo cpf
+   * Busca Responsavel pelo cpf
    * 
    * @param string: cpf
    * @return Promisse<Responsavel | undefined>
@@ -23,7 +23,7 @@ export default class ResponsavelRepository extends Repository<Responsavel>{
   }
 
   /**
-   * Busca Pessoa pelo email
+   * Busca Responsavel pelo email
    * 
    * @param string: email
    * @return Promisse<Responsavel | undefined>
@@ -36,6 +36,22 @@ export default class ResponsavelRepository extends Repository<Responsavel>{
       }
     })
 
-    return responsavel
+    return responsavel;
+  }
+
+  /**
+   * Busca Responsavel pelo id
+   * 
+   * @param number: id
+   * @return Promisse<Response | undefined>
+   */
+  public async findById(id: number): Promise<Responsavel | undefined> {
+    const responsavel = await this.findOne({
+      where: {
+        id
+      }
+    })
+
+    return responsavel;
   }
 }

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import Membro from "../../../Membro/typeorm/Entities/Membro";
 
 @Entity('tb_sessoes')
 export default class Sessao {
@@ -11,4 +12,7 @@ export default class Sessao {
   
   @Column('int')
   qtdeMembros: number;
+
+  @OneToMany(type => Membro, sessao => Sessao)
+  membros: Membro[]
 }

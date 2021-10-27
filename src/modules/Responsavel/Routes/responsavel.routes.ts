@@ -30,7 +30,7 @@ celebrate({
 }),
 responsavelController.create)
 
-responsavelRouter.delete('/:nroRegistro', isAuthenticated, 
+responsavelRouter.delete('/:id', isAuthenticated, 
 celebrate({
   [Segments.PARAMS]: {
     id: Joi.number().required(),
@@ -38,7 +38,7 @@ celebrate({
 }),
 responsavelController.delete)
 
-responsavelRouter.put('/:nroRegistro', isAuthenticated, 
+responsavelRouter.put('/:id', isAuthenticated, 
 celebrate({
   [Segments.PARAMS]: {
     id: Joi.number().required(),

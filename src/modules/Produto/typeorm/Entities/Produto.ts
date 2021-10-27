@@ -14,5 +14,4 @@ export default class Produto {
 
   @Column('int')
   valorProduto: number;
-
 }
