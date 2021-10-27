@@ -9,7 +9,7 @@ let produtoController = new ProdutoController()
 
 produtoRouter.get('/', isAuthenticated, produtoController.index) 
 
-produtoRouter.get('/:codProduto', isAuthenticated,
+produtoRouter.get('/:id', isAuthenticated,
 celebrate({
   [Segments.PARAMS]: {
     codProduto: Joi.number().required()
@@ -23,12 +23,13 @@ celebrate({
     codProduto: Joi.number().required(),
     categoria: Joi.string().required(),
     descProduto: Joi.string().required(),
-    valorProduto: Joi.number().required()
+    valorProduto: Joi.number().required(),
+    tipoProduto: Joi.object().required(),
   }
 }),
 produtoController.create)
 
-produtoRouter.delete('/:codProduto', isAuthenticated,
+produtoRouter.delete('/:id', isAuthenticated,
 celebrate({
   [Segments.PARAMS]: {
     codProduto: Joi.number().required(),
@@ -36,7 +37,7 @@ celebrate({
 }),
 produtoController.delete)
 
-produtoRouter.put('/:codProduto', isAuthenticated,
+produtoRouter.put('/:id', isAuthenticated,
 celebrate({
   [Segments.PARAMS]: {
     codProduto: Joi.number().required(),
@@ -45,7 +46,8 @@ celebrate({
     codProduto: Joi.number().required(),
     categoria: Joi.string().required(),
     descProduto: Joi.string().required(),
-    valorProduto: Joi.number().required()
+    valorProduto: Joi.number().required(),
+    tipoProduto: Joi.object().required(),
   }
 }),
 produtoController.update)

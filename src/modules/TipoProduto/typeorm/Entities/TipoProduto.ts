@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import Produto from "../../../Produto/typeorm/Entities/Produto";
 
 @Entity('tb_tipos_produtos')
 export default class TipoProduto {
@@ -8,4 +9,7 @@ export default class TipoProduto {
   
   @Column()
   descricao: string;
+
+  @OneToMany(type => Produto, tipoProduto => TipoProduto)
+  produtos: Produto;
 }

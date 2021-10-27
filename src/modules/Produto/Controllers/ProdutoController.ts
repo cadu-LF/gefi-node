@@ -9,13 +9,14 @@ import UpdateProdutoService from '../Services/UpdateProdutoService'
 export default class ProdutoController {
   public async create(request: Request, response: Response): Promise<Response> {
 
-    let {codProduto, categoria, descProduto, valorProduto} = request.body
+    let {codProduto, categoria, descProduto, valorProduto, tipoProduto} = request.body
     let createProduto = new CreateProdutoService()
     let newProduto = await createProduto.execute({
       codProduto,
       categoria,
       descProduto,
-      valorProduto
+      valorProduto,
+      tipoProduto
     })
 
     return response.json(newProduto);
@@ -46,13 +47,14 @@ export default class ProdutoController {
 
   public async update(request: Request, response: Response): Promise<Response> {
 
-    let {codProduto, categoria, descProduto, valorProduto} = request.body
+    let {codProduto, categoria, descProduto, valorProduto, tipoProduto} = request.body
     let updateService = new UpdateProdutoService();
     let produto = await updateService.execute({
       codProduto,
       categoria,
       descProduto,
-      valorProduto
+      valorProduto,
+      tipoProduto
     })
 
     return response.json(produto)
