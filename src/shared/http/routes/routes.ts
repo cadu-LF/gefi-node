@@ -9,6 +9,7 @@ import responsavelRouter from '../../../modules/Responsavel/Routes/responsavel.r
 import produtoRouter from '../../../modules/Produto/Routes/produto.routes'
 import pessoaRouter from '../../../modules/Pessoas/Routes/pessoa.routes'
 import membroRouter from '../../../modules/Membro/Routes/membro.routes'
+import tipoProdutoRouter from '../../../modules/TipoProduto/Routes/tipoProduto.routes'
 
 // criar um objeto da classe Router
 let routes = Router();
@@ -21,6 +22,7 @@ routes.use('/responsavel', responsavelRouter);
 routes.use('/pessoa', pessoaRouter);
 routes.use('/produto', produtoRouter);
 routes.use('/membro', membroRouter);
+routes.use('/tipo-produto', tipoProdutoRouter);
 routes.get('/', (request, response) => {
   
   return(response.json({
