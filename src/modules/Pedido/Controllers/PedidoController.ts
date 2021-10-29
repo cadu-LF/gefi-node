@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 
-import CreateProdutoService from '../Services/CreateProdutoService'
-import DeleteProdutoService from '../Services/DeleteProdutoService'
-import ListProdutoService from '../Services/ListProdutoService'
-import ShowProdutoService from '../Services/ShowProdutoService'
-import UpdateProdutoService from '../Services/UpdateProdutoService'
+import CreateProdutoService from '../Services/CreatePedidoService'
+import DeleteProdutoService from '../Services/DeletePedidoService'
+import ListProdutoService from '../Services/ListPedidoService'
+import ShowProdutoService from '../Services/ShowPedidoService'
+import UpdateProdutoService from '../Services/UpdatePedidoService'
 
-export default class ProdutoController {
+export default class PedidoController {
   public async create(request: Request, response: Response): Promise<Response> {
 
     let {codProduto, categoria, descProduto, valorProduto, tipoProduto} = request.body
