@@ -17,7 +17,7 @@ interface IRequest{
   membro: Membro
 }
 
-export default class UpdateProdutoService{
+export default class UpdatePedidoService{
   public async execute({id, situacao, observacao, produtos, membro}: IRequest): Promise<Pedido>{
     let pedidoRepository = getCustomRepository(PedidoRepository);
     let produtoRepository = getCustomRepository(ProdutoRepository);
