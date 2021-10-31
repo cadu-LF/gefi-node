@@ -10,7 +10,7 @@ import ProdutoRepository from "../../Produto/typeorm/Repositories/ProdutoReposit
 import MembroRepository from "../../Membro/typeorm/Repositories/MembroRepository";
 
 interface IRequest{
-  id: string,
+  idPedido: string,
   situacao: string,
   observacao: string,
   produtos: Produto[],
@@ -18,15 +18,15 @@ interface IRequest{
 }
 
 export default class UpdatePedidoService{
-  public async execute({id, situacao, observacao, produtos, membro}: IRequest): Promise<Pedido>{
+  public async execute({idPedido, situacao, observacao, produtos, membro}: IRequest): Promise<Pedido>{
     let pedidoRepository = getCustomRepository(PedidoRepository);
     let produtoRepository = getCustomRepository(ProdutoRepository);
     let membroRepository = getCustomRepository(MembroRepository);
 
-    let pedidoExists = await pedidoRepository.findById(Number(id))
+    let pedidoExists = await pedidoRepository.findById(Number(idPedido))
 
     if (!pedidoExists) {
-      throw new AppErrors (`Pedido com o id: ${id} não existe`);
+      throw new AppErrors (`Pedido com o id: ${idPedido} não existe`);
     }
 
     let valorTotal = 0;
@@ -49,6 +49,7 @@ export default class UpdatePedidoService{
 
     pedidoExists.situacao = situacao;
     pedidoExists.observacao = observacao;
+    pedidoExists.valorTotal = valorTotal;
     pedidoExists.produtos = produtos;
     pedidoExists.membro = membro;
     await pedidoRepository.save(pedidoExists);

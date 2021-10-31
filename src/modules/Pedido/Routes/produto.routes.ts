@@ -1,55 +1,53 @@
-import { Router } from 'express'
+import { Router } from 'express';
 
-import ProdutoController from '../Controllers/ProdutoController'
-import {celebrate, Joi, Segments} from 'celebrate'
-import isAuthenticated from '../../../shared/middleware/isAuthenticated'
+import PedidoController from '../Controllers/PedidoController';
+import {celebrate, Joi, Segments} from 'celebrate';
+import isAuthenticated from '../../../shared/middleware/isAuthenticated';
 
-let produtoRouter = Router()
-let produtoController = new ProdutoController()
+let pedidoRouter = Router();
+let pedidoController = new PedidoController();
 
-produtoRouter.get('/', isAuthenticated, produtoController.index) 
+pedidoRouter.get('/', isAuthenticated, pedidoController.index);
 
-produtoRouter.get('/:id', isAuthenticated,
+pedidoRouter.get('/:idPedido', isAuthenticated,
 celebrate({
   [Segments.PARAMS]: {
-    codProduto: Joi.number().required()
+    idPedido: Joi.number().required()
   }
 }),
-produtoController.show)
+pedidoController.show);
 
-produtoRouter.post('/', isAuthenticated,
+pedidoRouter.post('/', isAuthenticated,
 celebrate({
   [Segments.BODY]: {
-    codProduto: Joi.number().required(),
-    categoria: Joi.string().required(),
-    descProduto: Joi.string().required(),
-    valorProduto: Joi.number().required(),
-    tipoProduto: Joi.object().required(),
+    sitaucao: Joi.string().required(),
+    observacao: Joi.string().required(),
+    produtos: Joi.array().required(),
+    membro: Joi.object().required(),
   }
 }),
-produtoController.create)
+pedidoController.create);
 
-produtoRouter.delete('/:id', isAuthenticated,
+pedidoRouter.delete('/:idPedido', isAuthenticated,
 celebrate({
   [Segments.PARAMS]: {
-    codProduto: Joi.number().required(),
+    idPedido: Joi.number().required(),
   }
 }),
-produtoController.delete)
+pedidoController.delete);
 
-produtoRouter.put('/:id', isAuthenticated,
+pedidoRouter.put('/:idPedido', isAuthenticated,
 celebrate({
   [Segments.PARAMS]: {
-    codProduto: Joi.number().required(),
+    idPedido: Joi.number().required(),
   },
   [Segments.BODY]: {
-    codProduto: Joi.number().required(),
-    categoria: Joi.string().required(),
-    descProduto: Joi.string().required(),
-    valorProduto: Joi.number().required(),
-    tipoProduto: Joi.object().required(),
+    situacao: Joi.number().required(),
+    observacao: Joi.string().required(),
+    produtos: Joi.array().required(),
+    membro: Joi.object().required(),
   }
 }),
-produtoController.update)
+pedidoController.update);
 
-export default produtoRouter
+export default pedidoRouter;

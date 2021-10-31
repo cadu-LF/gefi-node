@@ -7,7 +7,7 @@ import Produto from "../../Produto/typeorm/Entities/Produto";
 import Pedido from "../typeorm/Entities/Pedido";
 
 import PedidoRepository from "../typeorm/Repositories/PedidoRepository";
-import ProdutoRepository from "../../Produto/typeorm/Repositories/ProdutoRepository"
+import ProdutoRepository from "../../Produto/typeorm/Repositories/ProdutoRepository";
 import MembroRepository from "../../Membro/typeorm/Repositories/MembroRepository";
 
 interface IRequest {
@@ -35,7 +35,7 @@ export default class CreatePedidoService {
       valorTotal += produto.valorProduto;
     })
 
-    let membroExists = await membroRepository.findByCpf(membro.cpf)
+    let membroExists = await membroRepository.findByCpf(membro.cpf);
 
     if(membroExists) {
       throw new AppErrors('Já temos alguém com o cpf informado');

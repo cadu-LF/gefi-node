@@ -1,62 +1,62 @@
 import { Request, Response } from "express";
 
-import CreateProdutoService from '../Services/CreatePedidoService'
-import DeleteProdutoService from '../Services/DeletePedidoService'
-import ListProdutoService from '../Services/ListPedidoService'
-import ShowProdutoService from '../Services/ShowPedidoService'
-import UpdateProdutoService from '../Services/UpdatePedidoService'
+import CreatePedidoService from '../Services/CreatePedidoService';
+import DeletePedidoService from '../Services/DeletePedidoService';
+import ListPedidoService from '../Services/ListPedidoService';
+import ShowPedidoService from '../Services/ShowPedidoService';
+import UpdatePedidoService from '../Services/UpdatePedidoService';
 
 export default class PedidoController {
   public async create(request: Request, response: Response): Promise<Response> {
 
-    let {codProduto, categoria, descProduto, valorProduto, tipoProduto} = request.body
-    let createProduto = new CreateProdutoService()
-    let newProduto = await createProduto.execute({
-      codProduto,
-      categoria,
-      descProduto,
-      valorProduto,
-      tipoProduto
+    let { situacao, observacao, produtos, membro} = request.body;
+    let createPedido = new CreatePedidoService()
+    let newPedido = await createPedido.execute({
+      situacao,
+      observacao,
+      produtos,
+      membro
     })
 
-    return response.json(newProduto);
+    return response.json(newPedido);
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    let { codProduto } = request.params;
-    let deleteProduto = new DeleteProdutoService();
-    await deleteProduto.execute({ codProduto })
+    let { idPedido } = request.params;
+    let deletePedido = new DeletePedidoService();
+    await deletePedido.execute({ idPedido });
 
-    return response.json([])
+    return response.json([]);
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
-    let listProduto = new ListProdutoService();
-    let produtos = await listProduto.execute()
+    let listPedido = new ListPedidoService();
+    let pedidos = await listPedido.execute();
 
-    return response.json(produtos)
+    return response.json(pedidos);
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    let { codProduto } = request.params
-    let showProduto = new ShowProdutoService();
-    let produto = await showProduto.execute({ codProduto })
+    let { idPedido } = request.params;
+    let showPedido = new ShowPedidoService();
+    let pedido = await showPedido.execute({ idPedido });
 
-    return response.json(produto)
+    return response.json(pedido);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
 
-    let {codProduto, categoria, descProduto, valorProduto, tipoProduto} = request.body
-    let updateService = new UpdateProdutoService();
-    let produto = await updateService.execute({
-      codProduto,
-      categoria,
-      descProduto,
-      valorProduto,
-      tipoProduto
+    let {idPedido} = request.params;
+    let { situacao, observacao, produtos, membro} = request.body;
+    let updateService = new UpdatePedidoService();
+    let pedido = await updateService.execute({
+      idPedido,
+      situacao,
+      observacao,
+      produtos,
+      membro
     })
 
-    return response.json(produto)
+    return response.json(pedido);
   }
 }

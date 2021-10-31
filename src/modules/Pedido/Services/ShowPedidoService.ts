@@ -1,7 +1,7 @@
-import { getCustomRepository } from "typeorm"
-import AppErrors from "../../../shared/errors/AppErrors"
-import Pedido from "../typeorm/Entities/Pedido"
-import PedidoRepository from "../typeorm/Repositories/PedidoRepository"
+import { getCustomRepository } from "typeorm";
+import AppErrors from "../../../shared/errors/AppErrors";
+import Pedido from "../typeorm/Entities/Pedido";
+import PedidoRepository from "../typeorm/Repositories/PedidoRepository";
 
 interface IRequest {
   idPedido: string

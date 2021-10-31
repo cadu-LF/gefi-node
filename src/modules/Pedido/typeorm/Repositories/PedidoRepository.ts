@@ -16,6 +16,6 @@ export default class PedidoRepository extends Repository<Pedido>{
       }
     })
 
-    return pedido
+    return pedido;
   }
 }
