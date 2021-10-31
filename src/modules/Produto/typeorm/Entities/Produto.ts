@@ -1,4 +1,5 @@
-import { Column, Entity, JoinTable, ManyToOne } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from "typeorm";
+import Pedido from "../../../Pedido/typeorm/Entities/Pedido";
 import TipoProduto from "../../../TipoProduto/typeorm/Entities/TipoProduto";
 
 @Entity('tb_produtos')
@@ -19,4 +20,7 @@ export default class Produto {
   @ManyToOne(type => TipoProduto, produtos => Produto)
   @JoinTable()
   tipoProduto: TipoProduto;
+
+  @ManyToMany(type => Pedido, produtos => Produto)
+  pedidos: Pedido[];
 }

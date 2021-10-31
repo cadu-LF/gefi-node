@@ -9,20 +9,24 @@ import Pedido from "../typeorm/Entities/Pedido";
 import PedidoRepository from "../typeorm/Repositories/PedidoRepository";
 import ProdutoRepository from "../../Produto/typeorm/Repositories/ProdutoRepository";
 import MembroRepository from "../../Membro/typeorm/Repositories/MembroRepository";
+import Usuario from "../../Usuario/typeorm/Entities/Usuario";
+import UsuarioRepository from "../../Usuario/typeorm/Repositories/UsuarioRepository";
 
 interface IRequest {
   situacao: string,
   observacao: string,
   produtos: Produto[],
-  membro: Membro
+  membro: Membro,
+  usuario: Usuario
 }
 
 export default class CreatePedidoService {
 
-  public async execute({situacao, observacao, produtos, membro}: IRequest): Promise<Pedido> {
+  public async execute({situacao, observacao, produtos, membro, usuario}: IRequest): Promise<Pedido> {
     let pedidoRepository = getCustomRepository(PedidoRepository);
     let produtoRepository = getCustomRepository(ProdutoRepository);
     let membroRepository = getCustomRepository(MembroRepository);
+    let usuarioRepository = getCustomRepository(UsuarioRepository);
 
     let valorTotal = 0;
     
@@ -41,12 +45,19 @@ export default class CreatePedidoService {
       throw new AppErrors('Já temos alguém com o cpf informado');
     }
 
+    let usuarioExists = await usuarioRepository.findById(usuario.id);
+
+    if (!usuarioExists) {
+      throw new AppErrors('Usuário não encontrado');
+    }
+
     let newPedido = pedidoRepository.create({
       situacao, 
       observacao, 
       valorTotal,
       produtos,
-      membro
+      membro,
+      usuario
     })
 
     await pedidoRepository.save(newPedido);

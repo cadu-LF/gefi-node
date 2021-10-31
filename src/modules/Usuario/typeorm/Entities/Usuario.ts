@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import Pedido from "../../../Pedido/typeorm/Entities/Pedido";
 
 @Entity('tb_usuarios')
 export default class Usuario {
@@ -14,4 +15,7 @@ export default class Usuario {
 
   @Column()
   password: string;
+
+  @OneToMany(type => Pedido, usuarios => Usuario)
+  pedidos: Pedido[];
 }

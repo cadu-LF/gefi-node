@@ -26,7 +26,7 @@ export default class UsuarioRepository extends Repository<Usuario>{
     return user;
   }
 
-  public async findById(id: string): Promise<Usuario | undefined> {
+  public async findById(id: number): Promise<Usuario | undefined> {
     
     const user = await this.findOne({
       where: { 

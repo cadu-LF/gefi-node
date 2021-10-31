@@ -1,6 +1,7 @@
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import Membro from "../../../Membro/typeorm/Entities/Membro";
 import Produto from "../../../Produto/typeorm/Entities/Produto";
+import Usuario from "../../../Usuario/typeorm/Entities/Usuario";
 
 @Entity('tb_produtos')
 export default class Pedido {
@@ -21,7 +22,11 @@ export default class Pedido {
   @JoinTable()
   produtos: Produto[];
 
-  @ManyToOne(type => Membro, pedido => Pedido)
+  @ManyToMany(type => Membro, pedido => Pedido)
   @JoinTable()
-  membro: Membro 
+  membro: Membro;
+
+  @ManyToOne(type => Usuario, pedidos => Pedido)
+  @JoinTable()
+  usuario: Usuario;
 }
