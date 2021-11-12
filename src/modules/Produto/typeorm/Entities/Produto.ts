@@ -1,11 +1,11 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import Pedido from "../../../Pedido/typeorm/Entities/Pedido";
 import TipoProduto from "../../../TipoProduto/typeorm/Entities/TipoProduto";
 
 @Entity('tb_produtos')
 export default class Produto {
   
-  @Column('int')
+  @PrimaryGeneratedColumn()
   codProduto: number;
 
   @Column()

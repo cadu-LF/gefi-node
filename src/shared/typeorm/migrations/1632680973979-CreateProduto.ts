@@ -15,7 +15,6 @@ export class CreateProduto1632680973979 implements MigrationInterface {
                 {
                     name: 'id_tipo_produto',
                     type: 'integer',
-                    isUnique: true
                 },
                 {
                     name: 'desc_produto',
@@ -33,7 +32,7 @@ export class CreateProduto1632680973979 implements MigrationInterface {
         const foreignKey = new TableForeignKey({
             columnNames: ["id_tipo_produto"],
             referencedColumnNames: ["id_tipo_produto"],
-            referencedTableName: "tb_tipo_produto",
+            referencedTableName: "tb_tipos_produtos",
             onDelete: "CASCADE"
         });
         await queryRunner.createForeignKey("tb_tipos_produtos", foreignKey);
