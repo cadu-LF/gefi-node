@@ -9,12 +9,10 @@ export class CreateMembro1634862745649 implements MigrationInterface {
                 {
                     name: 'id_membro',
                     type: 'integer',
-                    isUnique: true,
                 },
                 {
                     name: 'id_responsavel',
                     type: 'integer',
-                    isUnique: true
                 },
                 {
                     name: 'id_sessao',

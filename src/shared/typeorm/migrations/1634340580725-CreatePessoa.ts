@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
 export class CreatePessoa1634340580725 implements MigrationInterface {
 
@@ -11,6 +11,10 @@ export class CreatePessoa1634340580725 implements MigrationInterface {
                     type: 'integer',
                     isPrimary: true,
                     generationStrategy: 'increment'
+                },
+                {
+                    name: 'id_endereco',
+                    type: 'integer',
                 },
                 {
                     name: 'cpf',
@@ -35,6 +39,14 @@ export class CreatePessoa1634340580725 implements MigrationInterface {
                 }
             ]
         }))
+
+        const enderecoForeignKey = new TableForeignKey({
+            columnNames: ['id_endereco'],
+            referencedColumnNames: ['id_endereco'],
+            referencedTableName: 'tb_enderecos',
+            onDelete: 'CASCADE'
+        });
+        await queryRunner.createForeignKey('tb_pessoas', enderecoForeignKey)
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

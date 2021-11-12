@@ -1,0 +1,17 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "C1a2d3u4",
+  "database": "GRUPO_5_TIC_2021",
+  "entities": [
+    "./src/modules/**/typeorm/Entities/*"
+  ],
+  "migrations": [
+    "./src/shared/typeorm/migrations/*.ts" 
+  ],
+  "cli": {
+    "migrationsDir": "./src/shared/typeorm/migrations"
+  }
+}
