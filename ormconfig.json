@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "postgres",
   "password": "C1a2d3u4",
-  "database": "GRUPO_5_TIC_2021",
+  "database": "teste",
   "entities": [
     "./src/modules/**/typeorm/Entities/*"
   ],

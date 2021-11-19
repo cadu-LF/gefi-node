@@ -1,24 +1,21 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import Pedido from "../../../Pedido/typeorm/Entities/Pedido";
 import TipoProduto from "../../../TipoProduto/typeorm/Entities/TipoProduto";
 
 @Entity('tb_produtos')
 export default class Produto {
   
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment', {name: 'id_produto'})
   codProduto: number;
 
-  @Column()
-  categoria: string;
-
-  @Column()
+  @Column({name: 'desc_produto'})
   descProduto: string;
 
-  @Column('int')
+  @Column('int', {name: 'valor_produto'})
   valorProduto: number;
 
   @ManyToOne(type => TipoProduto, produtos => Produto)
-  @JoinTable()
+  @JoinColumn({name: 'id_tipo_produto'})
   tipoProduto: TipoProduto;
 
   @ManyToMany(type => Pedido, produtos => Produto)

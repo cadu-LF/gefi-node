@@ -8,7 +8,7 @@ export class CreateEndereco1632680293541 implements MigrationInterface {
             columns: [
                 {
                     name: 'id_endereco',
-                    type: 'integer',
+                    type: 'serial',
                     isPrimary: true,
                     generationStrategy: 'increment',
                 },
@@ -21,7 +21,7 @@ export class CreateEndereco1632680293541 implements MigrationInterface {
                     type: 'varchar'
                 },
                 {
-                    name: 'nro',
+                    name: 'numero',
                     type: 'integer'
                 },
                 {

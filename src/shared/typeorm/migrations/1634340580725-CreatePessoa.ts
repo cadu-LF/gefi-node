@@ -8,7 +8,7 @@ export class CreatePessoa1634340580725 implements MigrationInterface {
             columns: [
                 {
                     name: 'id_pessoa',
-                    type: 'integer',
+                    type: 'serial',
                     isPrimary: true,
                     generationStrategy: 'increment'
                 },
@@ -25,8 +25,8 @@ export class CreatePessoa1634340580725 implements MigrationInterface {
                     type: 'varchar'
                 },
                 {
-                    name: 'idade',
-                    type: 'integer'
+                    name: 'data_nascimento',
+                    type: 'date'
                 },
                 {
                     name: 'sexo',

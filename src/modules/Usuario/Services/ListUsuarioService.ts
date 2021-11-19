@@ -6,8 +6,9 @@ export default class ListUsuarioService {
   
   public async execute(): Promise<Usuario[]> {
 
-    let userRepository = getCustomRepository(UsuarioRepository)
-    let users = await userRepository.find()
-    return users
+    let userRepository = getCustomRepository(UsuarioRepository);
+    let users = await userRepository.find();
+    
+    return users;
   }
 }

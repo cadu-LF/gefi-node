@@ -8,7 +8,7 @@ export class CreateProduto1632680973979 implements MigrationInterface {
             columns: [
                 {
                     name: 'id_produto',
-                    type: 'integer',
+                    type: 'serial',
                     isPrimary: true,
                     generationStrategy: 'increment'
                 },
@@ -28,6 +28,8 @@ export class CreateProduto1632680973979 implements MigrationInterface {
             ]
 
         }))
+
+        queryRunner.clearSqlMemory();
         
         const foreignKey = new TableForeignKey({
             columnNames: ["id_tipo_produto"],

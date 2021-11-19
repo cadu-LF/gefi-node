@@ -7,7 +7,7 @@ import isAuthenticated from '../../../shared/middleware/isAuthenticated'
 let userRouter = Router()
 let userController = new UsuarioController()
 
-userRouter.get('/', isAuthenticated, userController.index) 
+userRouter.get('/',  userController.index) 
 
 userRouter.post('/',
 celebrate({

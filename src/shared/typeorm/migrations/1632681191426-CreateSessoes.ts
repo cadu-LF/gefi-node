@@ -8,7 +8,7 @@ export class CreateSessoes1632681191426 implements MigrationInterface {
             columns: [
                 {
                     name: 'id_sessao',
-                    type: 'integer',
+                    type: 'serial',
                     isPrimary: true,
                 },
                 {

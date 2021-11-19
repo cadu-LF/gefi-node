@@ -1,21 +1,24 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import Pessoa from "../../../Pessoas/typeorm/Entities/Pessoa";
 
 @Entity('tb_enderecos')
 export default class Endereco {
 
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment', {name: 'id_endereco'})
   id: number;
   
-  @Column('int')
+  @Column('int', {name: 'numero'})
   numero: number;
 
-  @Column()
+  @Column({name: 'rua'})
   rua: string;
 
-  @Column()
+  @Column({name: 'bairro'})
   bairro: string;
 
-  @Column()
+  @Column({name: 'complemento'})
   complemento: string;
 
+  @OneToMany(type => Pessoa, enderecos => Endereco)
+  pessoa: Pessoa;
 }
