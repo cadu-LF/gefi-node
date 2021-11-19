@@ -32,7 +32,6 @@ class SessaoUsuarioService {
       throw new AppError(`Incorrect email/password combination`, 401)
     }
 
-    console.log('tudo certo')
     const sub = '' + user.id;
 
     let token = sign({}, authConfig.jwt.secret, {

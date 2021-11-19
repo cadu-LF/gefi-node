@@ -32,7 +32,6 @@ export default class ProdutoController {
 
   public async index(request: Request, response: Response): Promise<Response> {
     let listProduto = new ListProdutoService();
-    console.log('index');
     let produtos = await listProduto.execute()
 
     return response.json(produtos)

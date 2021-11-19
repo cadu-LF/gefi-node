@@ -1,5 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import Endereco from "../../../Endereco/typeorm/Entities/Endereco";
+import Membro from "../../../Membro/typeorm/Entities/Membro";
 import Responsavel from "../../../Responsavel/typeorm/Entities/Responsavel";
 
 @Entity('tb_pessoas')
@@ -29,4 +30,7 @@ export default class Pessoa {
 
   @OneToOne(type => Responsavel, pessoa => Pessoa)
   responsavel: Responsavel;
+
+  @OneToOne(type => Membro, pessoa => Pessoa)
+  membro: Membro;
 }

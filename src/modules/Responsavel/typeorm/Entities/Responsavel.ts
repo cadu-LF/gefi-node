@@ -18,5 +18,5 @@ export default class Responsavel {
   voluntario: boolean;
 
   @OneToMany(type => Membro, responsavel => Responsavel)
-  membros: Membro;
+  membros: Membro[];
 }
