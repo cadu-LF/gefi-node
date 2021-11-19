@@ -1,6 +1,6 @@
 // vamos usar o padrão de projeto decorator
 
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany} from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany} from "typeorm";
 import Pessoa from "../../../Pessoas/typeorm/Entities/Pessoa";
 import Responsavel from "../../../Responsavel/typeorm/Entities/Responsavel";
 import Sessao from "../../../Sessoes/typeorm/Entities/Sessao";
@@ -15,11 +15,11 @@ export default class Membro extends Pessoa {
   vencimentoRegistro: Date;
 
   @OneToMany(type => Sessao, membros => Membro, { eager: true})
-  @JoinTable()
+  @JoinColumn()
   sessao: Sessao;
 
   @ManyToOne( type => Responsavel, membros => Membro, {eager: true})
-  @JoinTable()
+  @JoinColumn()
   responsavel: Responsavel;
 
   @ManyToMany(type => Membro)

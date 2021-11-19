@@ -9,6 +9,8 @@ export class CreateMembro1634862745649 implements MigrationInterface {
                 {
                     name: 'id_membro',
                     type: 'integer',
+                    isPrimary: true,
+                    generationStrategy: 'increment',
                 },
                 {
                     name: 'id_responsavel',

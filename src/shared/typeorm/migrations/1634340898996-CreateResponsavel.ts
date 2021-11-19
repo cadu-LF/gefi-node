@@ -9,7 +9,8 @@ export class CreateResponsavel1634340898996 implements MigrationInterface {
                 {
                     name: 'id_responsavel',
                     type: 'integer',
-                    isUnique: true,
+                    isPrimary: true,
+                    generationStrategy: 'increment',
                 },
                 {
                     name: 'voluntario',

@@ -30,6 +30,7 @@ export default class CreateUserService {
       password: hashedPassword
     })
 
+    console.log(newUser); // preciso de descobrir pq o id não é autoincrementado
     await userReposiory.save(newUser);
 
     return newUser;

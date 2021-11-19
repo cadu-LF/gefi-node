@@ -19,7 +19,7 @@ interface IResponse {
 class SessaoUsuarioService {
   public async execute({email, password}: IRequest): Promise<IResponse> {
     let userRespository = getCustomRepository(UsuarioRepository)
-
+    
     let user = await userRespository.findByEmail(email)
 
     if (!user) {
@@ -32,12 +32,13 @@ class SessaoUsuarioService {
       throw new AppError(`Incorrect email/password combination`, 401)
     }
 
-    const jwt = require('jsonwebtoken');
+    console.log('tudo certo')
+    const sub = '' + user.id;
 
-    let token = jwt.sign({}, authConfig.jwt.secret, {
-      subject: user.id,
+    let token = sign({}, authConfig.jwt.secret, {
+      subject: sub,
       expiresIn: authConfig.jwt.expiresIn
-    })
+  })
 
     return {
       user,
