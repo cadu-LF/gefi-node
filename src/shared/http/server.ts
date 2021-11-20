@@ -5,16 +5,22 @@ import '../typeorm'
 import {errors} from 'celebrate'
 import AppErrors from '../errors/AppErrors'
 
+var cors = require('cors');
 
 let servidor = express();
 
 servidor.use(express.json())
 
+servidor.use(cors())
+
 servidor.use(routes)
+
 servidor.use(errors())
+
 servidor.use(
   (error:Error, request:Request, response: Response, next: NextFunction) => {
     if (error instanceof AppErrors) { // vamos tratar o erro
+      console.log(error);
       return response.status(error.statusCode).json({
         status: 'erro',
         message: error.message

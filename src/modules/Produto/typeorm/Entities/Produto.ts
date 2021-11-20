@@ -14,7 +14,7 @@ export default class Produto {
   @Column('int', {name: 'valor_produto'})
   valorProduto: number;
 
-  @ManyToOne(type => TipoProduto, produtos => Produto)
+  @ManyToOne(type => TipoProduto, produtos => Produto, {eager: true})
   @JoinColumn({name: 'id_tipo_produto'})
   tipoProduto: TipoProduto;
 

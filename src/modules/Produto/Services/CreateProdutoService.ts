@@ -7,8 +7,6 @@ import Produto from "../typeorm/Entities/Produto";
 import ProdutoRepository from "../typeorm/Repositories/ProdutoRepository";
 
 interface IRequest {
-  codProduto: number,
-  categoria: string,
   descProduto: string,
   valorProduto: number,
   tipoProduto: TipoProduto
@@ -16,7 +14,7 @@ interface IRequest {
 
 export default class CreateProdutoService {
 
-  public async execute({codProduto, categoria, descProduto, valorProduto, tipoProduto}: IRequest): Promise<Produto> {
+  public async execute({descProduto, valorProduto, tipoProduto}: IRequest): Promise<Produto> {
     let produtoRepository = getCustomRepository(ProdutoRepository);
     let tipoProdutoRepository = getCustomRepository(TipoProdutoRepository);
 
@@ -37,8 +35,6 @@ export default class CreateProdutoService {
     }
 
     let newProduto = produtoRepository.create({
-      codProduto, 
-      categoria, 
       descProduto, 
       valorProduto,
       tipoProduto

@@ -22,9 +22,9 @@ celebrate({
   [Segments.BODY]: {
     cpf: Joi.string().required(),
     nome: Joi.string().required(),
-    idade: Joi.number().required(), 
+    idade: Joi.date().required(), 
     sexo: Joi.string().required(),
-    email: Joi.string().required, 
+    email: Joi.string().required(), 
     voluntario: Joi.boolean().required()
   }
 }),

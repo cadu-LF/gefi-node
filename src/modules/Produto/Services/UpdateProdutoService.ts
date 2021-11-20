@@ -6,19 +6,18 @@ import Produto from "../typeorm/Entities/Produto";
 import ProdutoRepository from "../typeorm/Repositories/ProdutoRepository";
 
 interface IRequest{
-  codProduto: number,
-  categoria: string,
+  codProduto: string,
   descProduto: string,
   valorProduto: number,
   tipoProduto: TipoProduto
 }
 
 export default class UpdateProdutoService{
-  public async execute({codProduto, categoria, descProduto, valorProduto, tipoProduto}: IRequest): Promise<Produto>{
+  public async execute({codProduto, descProduto, valorProduto, tipoProduto}: IRequest): Promise<Produto>{
     let produtoRepository = getCustomRepository(ProdutoRepository);
     let tipoProdutoRepository = getCustomRepository(TipoProdutoRepository);
 
-    let produtoExists = await produtoRepository.findByCodigo(codProduto);
+    let produtoExists = await produtoRepository.findByCodigo(Number (codProduto));
 
     if(!produtoExists){
       throw new AppErrors('Produto não existe');
@@ -37,8 +36,7 @@ export default class UpdateProdutoService{
       throw new AppErrors('Tipo de Produto informado não existe');
     }
 
-    produtoExists.codProduto = codProduto;
-    produtoExists.categoria = categoria;
+    produtoExists.codProduto = Number (codProduto);
     produtoExists.descProduto = descProduto;
     produtoExists.valorProduto = valorProduto;
     produtoExists.tipoProduto = tipoProduto;
