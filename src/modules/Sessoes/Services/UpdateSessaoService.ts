@@ -19,9 +19,7 @@ export default class UpdateSessaoService{
       throw new AppErrors('Sessão não existe');
     }
 
-    let sessaoMesmoNome = await sessaoRepository.findByNome(nome);
-
-    if(sessaoMesmoNome){
+    if(sessaoExists.nome === nome && sessaoExists.qtdeMembros === qtdeMembros){
       throw new AppErrors('Sessão já existente');
     }
 
