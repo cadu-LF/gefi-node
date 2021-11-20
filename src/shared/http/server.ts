@@ -19,8 +19,8 @@ servidor.use(errors())
 
 servidor.use(
   (error:Error, request:Request, response: Response, next: NextFunction) => {
+    console.log(error);
     if (error instanceof AppErrors) { // vamos tratar o erro
-      console.log(error);
       return response.status(error.statusCode).json({
         status: 'erro',
         message: error.message
