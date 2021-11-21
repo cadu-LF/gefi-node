@@ -15,10 +15,14 @@ export default class UsuarioRepository extends Repository<Usuario>{
     return user;
   }
 
-  public async findByEmail(requestEmail: string): Promise<Usuario | undefined> {
+  public async findByEmail(email: string): Promise<Usuario | undefined> {
     
-    // aqui está falhando
-    const user = await this.findOne({ email: requestEmail });
+    const user = await this.findOne({
+      where: {
+        email
+      }
+    });
+
 
     return user;
   }
