@@ -24,9 +24,9 @@ export default class Pessoa {
   @Column({name: 'email'})
   email: string;
 
-  @ManyToOne(type => Endereco, pessoa => Pessoa)
+  @ManyToOne(type => Endereco, pessoas => Pessoa , {eager: true})
   @JoinColumn({name: 'id_endereco'})
-  enderecos: Endereco[];
+  endereco: Endereco;
 
   @OneToOne(type => Responsavel, pessoa => Pessoa)
   responsavel: Responsavel;

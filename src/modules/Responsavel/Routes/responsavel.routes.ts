@@ -20,11 +20,16 @@ responsavelController.show)
 responsavelRouter.post('/', isAuthenticated, 
 celebrate({
   [Segments.BODY]: {
-    cpf: Joi.string().required(),
-    nome: Joi.string().required(),
-    idade: Joi.date().required(), 
-    sexo: Joi.string().required(),
-    email: Joi.string().required(), 
+    pessoa: Joi.object({
+      cpf: Joi.string().required(),
+      dataNascimento: Joi.date().required(),
+      nome: Joi.string().required(),
+      sexo: Joi.string().required(),
+      email: Joi.string().required(),
+      idEndereco: Joi.object({
+        id: Joi.number().required(),
+      }).required(),
+    }).required(),
     voluntario: Joi.boolean().required()
   }
 }),
