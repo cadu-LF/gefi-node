@@ -8,7 +8,6 @@ import UpdateProdutoService from '../Services/UpdateProdutoService'
 
 export default class ProdutoController {
   public async create(request: Request, response: Response): Promise<Response> {
-    console.log(request)
 
     let {descProduto, valorProduto, tipoProduto} = request.body
     let createProduto = new CreateProdutoService()
