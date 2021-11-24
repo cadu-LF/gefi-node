@@ -1,40 +1,48 @@
 import { getCustomRepository } from "typeorm";
 import AppErrors from "../../../shared/errors/AppErrors";
+import CreatePessoaService from "../../Pessoas/Services/CreatePessoaService";
 import Responsavel from "../typeorm/Entities/Responsavel";
 import ResponsavelRepository from "../typeorm/Repositories/ResponsavelRepository";
 
+interface IRequestEndereco {
+  id: string;
+}
+
+interface IRequestPessoa {
+  cpf: string;
+  nome: string;
+  dataNascimento: Date;
+  sexo: string;
+  email: string;
+  idEndereco: IRequestEndereco;
+}
+
 interface IRequest {
-  cpf: string,
-  nome: string,
-  idade: number,
-  sexo: string,
-  email: string,
+  pessoa: IRequestPessoa;
   voluntario: boolean
 }
 
 export default class CreateResponsavelService {
 
-  public async execute({cpf, nome, idade, sexo, email, voluntario}: IRequest): Promise<Responsavel> {
+  public async execute({pessoa, voluntario}: IRequest): Promise<Responsavel> {
     let responsavelReposiory = getCustomRepository(ResponsavelRepository);
+    let createPessoa = new CreatePessoaService();
+    let pessoaRespose = await createPessoa.execute(pessoa);
 
-    let responsavelExists = await responsavelReposiory.findByCpf(cpf)
+    let responsavelExists = await responsavelReposiory.findByCpf(pessoaRespose.cpf)
 
     if(responsavelExists) {
       throw new AppErrors('Já temos alguém com o cpf informado');
     } 
 
-    let emailExists = await responsavelReposiory.findByEmail(email)
+    let emailExists = await responsavelReposiory.findByEmail(pessoaRespose.email)
 
     if(emailExists) {
       throw new AppErrors('Já temos alguém com o email informado');
     } 
 
     let newResponsavel = responsavelReposiory.create({
-      cpf, 
-      nome, 
-      idade, 
-      sexo, 
-      email,
+      pessoa,
       voluntario
     })
 

@@ -8,14 +8,10 @@ import UpdateResponsavelService from "../Services/UpdateResponsavelService";
 export default class ResponsavelController {
   public async create(request: Request, response: Response): Promise<Response> {
 
-    let {cpf, nome, idade, sexo, email, voluntario} = request.body
+    let {pessoa, voluntario} = request.body
     let createResponsavel = new CreateResponsavelService()
     let newResponsavel = await createResponsavel.execute({
-      cpf,
-      nome,
-      idade,
-      sexo,
-      email,
+      pessoa,
       voluntario
     })
 

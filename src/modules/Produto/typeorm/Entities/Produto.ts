@@ -18,6 +18,4 @@ export default class Produto {
   @JoinColumn({name: 'id_tipo_produto'})
   tipoProduto: TipoProduto;
 
-  @ManyToMany(type => Pedido, produtos => Produto)
-  pedidos: Pedido[];
 }

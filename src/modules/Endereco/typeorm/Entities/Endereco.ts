@@ -20,5 +20,5 @@ export default class Endereco {
   complemento: string;
 
   @OneToMany(type => Pessoa, enderecos => Endereco)
-  pessoa: Pessoa;
+  pessoas: Pessoa[];
 }
