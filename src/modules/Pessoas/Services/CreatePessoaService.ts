@@ -22,12 +22,10 @@ export default class CreatePessoaService {
   public async execute({cpf, nome, dataNascimento, sexo, email, idEndereco}: IRequestPessoa, ): Promise<Pessoa> {
     let pessoaRepository = getCustomRepository(PessoaRepository);
     let showEndereco = new ShowEnderecoService();
-    console.log('createpessoaService')
     let endereco = await showEndereco.execute(idEndereco)
 
     let emailExist = await pessoaRepository.findByEmail(email);
 
-    console.log(endereco)
     if(emailExist) {
       throw new AppErrors('Já temos alguém com esse email cadastrado');
     } 
